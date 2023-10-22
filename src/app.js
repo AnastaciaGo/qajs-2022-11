@@ -40,3 +40,13 @@ export const getTotal = (items = [], discount = 0) => {
   }, 0);
   return total - (total * discount) / 100;
 };
+
+/**
+ * Сумма баллов
+ *
+ * @param {{nick: number}} scores
+ * @returns {number}
+ */
+export const getScore = (scores) => {
+  return Object.values(scores).reduce((acc, val) => acc + val, 0);
+};

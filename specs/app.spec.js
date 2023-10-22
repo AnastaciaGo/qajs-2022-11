@@ -1,6 +1,6 @@
 /* eslint-disable jest/expect-expect */
 // eslint-disable-next-line no-unused-vars
-import { nameIsValid, fullTrim, getTotal } from "../src/app.js";
+import { nameIsValid, fullTrim, getTotal, getScore } from "../src/app.js";
 
 describe("nameIsValid function tests", () => {
   test.each`
@@ -49,4 +49,9 @@ describe("getTotal function tests", () => {
     const discount = 11;
     expect(getTotal(items, discount)).toBe(113.92);
   });
+});
+
+test('getScore function test', () => {
+  const scores = { Anna: 5, Ivan: 7, Irina: 10 };
+  expect(getScore(scores)).toBe(22);
 });
