@@ -39,9 +39,6 @@ const account = {
     const res = await this.getToken(creds);
     return res.body.token;
   },
-  getUniqueLogin: () => {
-    return "usertest" + Math.floor(Math.random() * 10000);
-  },
 };
 
 export default account;

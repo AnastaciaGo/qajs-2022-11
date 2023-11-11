@@ -1,5 +1,6 @@
 import account from "../services/user";
 import config from "../config";
+import { faker } from "@faker-js/faker";
 
 const passwordValid = "123ASD!_09hg1";
 const passwordInvalid = "123ASD";
@@ -7,7 +8,7 @@ const passwordInvalid = "123ASD";
 describe("createUser api tests", () => {
   test("create user with valid login and password => success", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const res = await account.createUser(creds);
@@ -23,7 +24,7 @@ describe("createUser api tests", () => {
   });
   test("create user with invalid password => fail", async () => {
     const res = await account.createUser({
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordInvalid,
     });
     expect(res.status).toBe(400);
@@ -37,7 +38,7 @@ describe("createUser api tests", () => {
 describe("getToken tests", () => {
   test("authorization with invalid password => fail", async () => {
     const res = await account.getToken({
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordInvalid,
     });
     expect(res.status).toBe(200);
@@ -62,7 +63,7 @@ describe("authorized tests", () => {
   });
   test("check authorisation if user unauthorized => false", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const user = await account.createUser(creds);
@@ -73,7 +74,7 @@ describe("authorized tests", () => {
   });
   test("check authorization if creds are invalid=> failed", async () => {
     const res = await account.checkAuth({
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     });
     expect(res.status).toBe(404);
@@ -85,7 +86,7 @@ describe("authorized tests", () => {
 describe("getUserInfo tests", () => {
   test("try to get info authorized => success", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const user = await account.createUser(creds);
@@ -99,7 +100,7 @@ describe("getUserInfo tests", () => {
   });
   test("try to get info unauthorized => fail", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const user = await account.createUser(creds);
@@ -113,7 +114,7 @@ describe("getUserInfo tests", () => {
   });
   test("try to get info if token and userid from different users => fail", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const user = await account.createUser(creds);
@@ -127,7 +128,7 @@ describe("getUserInfo tests", () => {
   });
   test("try to get info if userid not exsists => fail", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const user = await account.createUser(creds);
@@ -143,7 +144,7 @@ describe("getUserInfo tests", () => {
 describe("deleteUser tests", () => {
   test("try to delete user authorized => success", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const user = await account.createUser(creds);
@@ -154,7 +155,7 @@ describe("deleteUser tests", () => {
   });
   test("try to delete user unauthorized => fail", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const user = await account.createUser(creds);
@@ -168,7 +169,7 @@ describe("deleteUser tests", () => {
   });
   test("try to delete another user => fail", async () => {
     const creds = {
-      userName: account.getUniqueLogin(),
+      userName: faker.internet.userName(),
       password: passwordValid,
     };
     const user = await account.createUser(creds);
