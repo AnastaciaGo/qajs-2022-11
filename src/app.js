@@ -30,7 +30,7 @@ export const fullTrim = (text) => (text || "").replace(/\s/g, "");
  */
 export const getTotal = (items = [], discount = 0) => {
   if (typeof discount !== "number") {
-    throw new Error("Скидка должна быть числом");
+    throw new Error("Скидка должна быть числом1");
   }
   if (discount < 0) {
     throw new Error("Процент скидки не может быть отрицательным");
