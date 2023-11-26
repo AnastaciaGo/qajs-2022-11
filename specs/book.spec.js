@@ -4,8 +4,11 @@ import book from "../services/book";
 
 describe("Get books info tests", () => {
   test("Get book info with valid book => success", async () => {
+    await reporter.description("Books info got successfully").story("JNSITE-1212");
+    await reporter.startStep("Get books");
     const allBooks = await book.getBooks();
     const bookInfo = allBooks.body.books[0];
+    await reporter.endStep();
     const res = await book.getBookInfo(bookInfo["isbn"]);
     const isSchemaValid = Object.keys(res.body).every((item) =>
       Object.keys(book.bookSchema).includes(item),
