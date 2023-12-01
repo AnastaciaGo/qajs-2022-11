@@ -34,14 +34,10 @@ const account = {
     const auth = await this.getToken(creds);
     const token = auth.body.token;
     await this.deleteUser(id, token);
-    //console.log(res.status, res.body);
   },
   async getTokenInCache(creds) {
     const res = await this.getToken(creds);
     return res.body.token;
-  },
-  getUniqueLogin: () => {
-    return "usertest" + Math.floor(Math.random() * 10000);
   },
 };
 
