@@ -32,7 +32,7 @@ const config = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  //coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -107,15 +107,17 @@ const config = {
   // projects: undefined,
 
   // Use this configuration option to add custom reporters to Jest
-  reporters: [
-    "default",
-    [
-      "./node_modules/jest-html-reporter",
-      {
-        pageTitle: "Test Report",
-      },
-    ],
-  ],
+  // reporters: [
+  //   "default",
+  //   [
+  //     "./node_modules/jest-html-reporter",
+  //     {
+  //       pageTitle: "Test Report",
+  //       outputPath: "jest-html-report",
+  //       filename: "report.html",
+  //     },
+  //   ],
+  // ],
 
   // Automatically reset mock state before every test
   // resetMocks: false,
@@ -138,13 +140,13 @@ const config = {
   // ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
-  // runner: "jest-runner",
+  //runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ["jest-allure/dist/setup"],
+  //setupFilesAfterEnv: ["jest-html-reporter"],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -176,10 +178,10 @@ const config = {
   // testRegex: [],
 
   // This option allows the use of a custom results processor
-  // testResultsProcessor: undefined,
+  testResultsProcessor: "./node_modules/jest-html-reporter",
 
   // This option allows use of a custom test runner
-  testRunner: "jasmine2",
+  //testRunner: "jasmine2",
 
   // A map from regular expressions to paths to transformers
   // transform: undefined,
