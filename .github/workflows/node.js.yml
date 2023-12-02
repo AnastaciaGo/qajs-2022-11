@@ -57,10 +57,11 @@ jobs:
           Repository: ${{ github.repository }}
             
           See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+          
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
-        path: './test-reports/'
+        path: './test-reports'
 
     - name: Deploy to GitHub Pages
       id: deployment
