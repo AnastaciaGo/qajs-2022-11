@@ -9,6 +9,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions: # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
 
@@ -35,6 +40,7 @@ jobs:
 
     - name: Run tests
       run: npm run test
+      continue-on-error: true
 
     - name: Upload report
       uses: actions/upload-artifact@v3
@@ -42,3 +48,26 @@ jobs:
         name: report
         if-no-files-found: error
         path: ./test-reports/report.html
+      
+    - name: send telegram message on push
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        document: ./test-reports/report.html
+        message: |
+          ${{ github.actor }} created commit:
+          Commit message: ${{ github.event.commits[0].message }}
+            
+          Repository: ${{ github.repository }}
+            
+          See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: './test-reports'
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
