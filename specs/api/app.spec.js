@@ -1,6 +1,6 @@
 /* eslint-disable jest/expect-expect */
 // eslint-disable-next-line no-unused-vars
-import { nameIsValid, fullTrim, getTotal, getScore } from "../src/app.js";
+import { nameIsValid, fullTrim, getTotal, getScore } from "../../src/app.js";
 
 describe("nameIsValid function tests", () => {
   test.each`

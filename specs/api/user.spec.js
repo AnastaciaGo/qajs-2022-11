@@ -1,5 +1,5 @@
-import account from "../services/user";
-import config from "../config";
+import account from "../../services/user";
+import config from "../../config";
 import { faker } from "@faker-js/faker";
 
 const passwordValid = "123ASD!_09hg1";

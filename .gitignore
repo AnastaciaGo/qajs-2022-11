@@ -3,3 +3,7 @@ coverage
 .idea
 .eslintcache
 test-reports
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

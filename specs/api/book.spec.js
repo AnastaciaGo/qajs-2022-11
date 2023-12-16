@@ -1,6 +1,6 @@
-import account from "../services/user";
-import config from "../config";
-import book from "../services/book";
+import account from "../../services/user";
+import config from "../../config";
+import book from "../../services/book";
 
 describe("Book tests", () => {
   describe("Get books info tests", () => {
